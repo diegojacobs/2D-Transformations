@@ -1,19 +1,11 @@
 #define sgn(x) ((x < 0) ? -1 : ( (x > 0) ? 1 : 0))
 
-void drawLine(int x1, int y1, int x2, int y2, char color, int thickness, int pattern);
-void drawRectangle(int x1, int y1, int x2, int y2, char color,int thickness, int pattern);
-void drawFilledRectangle(int x1, int y1, int x2, int y2, char color1, char color2, int thickness, int patternLine, int patternFill);
-void scanline(int a[20][2], int n, char color1, char color2, int thickness, int patternLine, int patternFill);
+void drawLine(int x1, int y1, int x2, int y2, char color);
+void drawRectangle(int x1, int y1, int x2, int y2, char color);
+void drawFilledRectangle(int x1, int y1, int x2, int y2, char color);
+void scanline(int a[20][2], int n, char color);
 
-typedef struct linkedList{
-	int x;
-	int y;
-	struct Node* next;
-}Node;
-
-int * colores;
-
-void drawLine(int x1, int y1, int x2, int y2, char color, int thickness, int pattern){
+void drawLine(int x1, int y1, int x2, int y2, char color){
 	int i, dx, dy, sdx, sdy, x, y, px, py;
 	dx = x2 - x1;
 	dy = y2 - y1;
@@ -43,7 +35,7 @@ void drawLine(int x1, int y1, int x2, int y2, char color, int thickness, int pat
 				py += sdy;
 			}
 			px+=sdx;
-			putThicknessPixel(px, py, color, thickness, pattern);
+			putPixel(px, py, color);
 		}
 	}else{
 		for(i=0; i<dy; i++){
@@ -53,19 +45,19 @@ void drawLine(int x1, int y1, int x2, int y2, char color, int thickness, int pat
 				px += sdx;
 			}
 			py+=sdy;
-			putThicknessPixel(px, py, color, thickness, pattern);
+			putPixel(px, py, color);
 		}
 	}
 }
 
-void drawRectangle(int x1, int y1, int x2, int y2, char color,int thickness, int pattern){
-	drawLine(x1, y1, x2, y1, color, thickness, pattern);
-	drawLine(x1, y1, x1, y2, color, thickness, pattern);
-	drawLine(x2, y1, x2, y2, color, thickness, pattern);
-	drawLine(x1, y2, x2, y2, color, thickness, pattern);
+void drawRectangle(int x1, int y1, int x2, int y2, char color){
+	drawLine(x1, y1, x2, y1, color);
+	drawLine(x1, y1, x1, y2, color);
+	drawLine(x2, y1, x2, y2, color);
+	drawLine(x1, y2, x2, y2, color);
 }
 
-void drawFilledRectangle(int x1, int y1, int x2, int y2, char color1, char color2, int thickness, int patternLine, int patternFill){
+void drawFilledRectangle(int x1, int y1, int x2, int y2, char color){
 	int y, temp;
 
 	//Arregla los valores de y1 y y2 para que sean congruentes.
@@ -77,14 +69,14 @@ void drawFilledRectangle(int x1, int y1, int x2, int y2, char color1, char color
 
 	//Se dibuja el relleno del rectangulo.
 	for(y = y1; y <= y2; y++){
-		drawLine(x1, y, x2, y, color2 , 1, patternFill);
+		drawLine(x1, y, x2, y, color);
 	}
 
 	//Se dibuja el contorno.
-	drawRectangle(x1, y1, x2, y2, color1, thickness, patternLine);
+	drawRectangle(x1, y1, x2, y2, color);
 }
 
-void scanline(int a[20][2], int n, char color1, char color2, int thickness, int patternLine, int patternFill){
+void scanline(int a[20][2], int n, char color){
 	int i,j,k,gd,gm,dy,dx;
 	int x,y,temp;
 	int xi[20];
@@ -125,9 +117,9 @@ void scanline(int a[20][2], int n, char color1, char color2, int thickness, int 
 				}
 
 		for(i=0;i<k;i+=2)
-			drawLine(xi[i], y, xi[i+1]+1, y, color2, 1, patternFill);
+			drawLine(xi[i], y, xi[i+1]+1, y, color);
 	}
 
 	for(i=0; i<n-1; i++) 
-		drawLine(a[i][0], a[i][1], a[i+1][0], a[i+1][1], color1, thickness, patternLine);
+		drawLine(a[i][0], a[i][1], a[i+1][0], a[i+1][1], color);
 }

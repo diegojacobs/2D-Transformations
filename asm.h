@@ -6,7 +6,7 @@ int setVideoMode(int mode, long width, long height);
 void unsetVideoMode();
 void setBank(char bank);
 void putPixel(int x, int y, char color);
-void putThicknessPixel(int x, int y, char color, int thickness, int pattern);
+void putThicknessPixel(int x, int y, char color);
 char getPixel(int x, int y);
 
 char currentBank;
@@ -90,36 +90,6 @@ void putPixel(int x,int y, char color)
         MOV DI, [off]
         MOV AL, [color]
         MOV ES:[DI], AL
-    }
-}
-
-void putThicknessPixel(int x, int y, char color, int thickness, int pattern)
-{
-    int i,j;
-
-    if (pattern == 0)
-    {
-        for(i=0; i<thickness; i++)
-            for(j=0; j<thickness; j++)
-                putPixel(x+i, y+j, color);
-    }
-    
-    if(pattern == 1)
-    {
-        color = getPixel(5 + x%40, 129 + y%40);
-
-        for(i=0; i<thickness; i++)
-            for(j=0; j<thickness; j++)
-                putPixel(x+i, y+j, color);
-    }
-
-    if(pattern == 2)
-    {
-        color = getPixel(57 + x%40, 129 + y%40);
-
-        for(i=0; i<thickness; i++)
-            for(j=0; j<thickness; j++)
-                putPixel(x+i, y+j, color);
     }
 }
 
