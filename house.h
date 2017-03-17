@@ -5,6 +5,7 @@ int door[4][2];
 
 void initHouse();
 void drawHouse();
+void eraseHouse();
 void houseTranslation(int direction);
 
 void initHouse(){
