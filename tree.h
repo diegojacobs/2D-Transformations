@@ -1,5 +1,5 @@
-int tree[3][2];
-int trunk[4][2];
+double tree[3][2];
+double trunk[4][2];
 
 void initTree();
 void drawTree();

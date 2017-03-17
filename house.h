@@ -1,7 +1,7 @@
-int house[4][2];
-int roof[3][2];
-int window[4][2];
-int door[4][2];
+double house[4][2];
+double roof[3][2];
+double window[4][2];
+double door[4][2];
 
 void initHouse();
 void drawHouse();
