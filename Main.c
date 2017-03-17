@@ -3,6 +3,7 @@
 #include <dos.h>
 #include <math.h>
 #include <time.h>
+#include "enums.h"
 #include "asm.h"
 #include "matrix.h"
 #include "graph.h"
@@ -48,52 +49,63 @@ void main ()
     scanline(tree, 3, 2);
     scanline(trunk, 4, 67);
  
-    c = getchar();
+    c = 0;
     while(c != 'y'){
-        switch(c){
-            //House Right
-            case 'a':
-                eraseHouse();
-                break;
-            //House Up
-            case 'w':
-                drawHouse();
-                break;            
-            //House Down
-            case 's':
-                break;
-            //House Left
-            case 'd':
-                break;
+        if (kbhit()) {
+            c = getch();
+            switch(c){
+                //House Left
+                case 'a':
+                    eraseHouse();
+                    houseTranslation(LEFT);
+                    drawHouse();
+                    break;
+                //House Up
+                case 'w':
+                    eraseHouse();
+                    houseTranslation(UP);
+                    drawHouse();
+                    break;            
+                //House Down
+                case 's':
+                    eraseHouse();
+                    houseTranslation(DOWN);
+                    drawHouse();
+                    break;
+                //House Right
+                case 'd':
+                    eraseHouse();
+                    houseTranslation(RIGHT);
+                    drawHouse();
+                    break;
 
-            //House Rotation
-            case '1':
-                break;
-            //House Scaling
-            case '2':
-                break;
-            //House Shear Horizontal
-            case '3':
-                break;
-            //House Shear Vertical
-            case '4':
-                break;
+                //House Rotation
+                case '1':
+                    break;
+                //House Scaling
+                case '2':
+                    break;
+                //House Shear Horizontal
+                case '3':
+                    break;
+                //House Shear Vertical
+                case '4':
+                    break;
 
-            //Tree Right
-            case 'k':
-                break;
-            //Tree Up
-            case 'o':
-                break;
-            //Tree Down
-            case 'l':
-                break;
-            //Tree Left
-            case ';':
-                break;  
-        };
-
-        c = getchar();
+                //Tree Right
+                case 'k':
+                    break;
+                //Tree Up
+                case 'o':
+                    break;
+                //Tree Down
+                case 'l':
+                    break;
+                //Tree Left
+                case ';':
+                    break;  
+            };
+        }
     }
 
     unsetVideoMode();

@@ -1,7 +1,3 @@
-#define SQUARE 4
-#define TRIANGLE 3
-#define WHITE 15
-
 int house[4][2];
 int roof[3][2];
 int window[4][2];
@@ -9,6 +5,7 @@ int door[4][2];
 
 void initHouse();
 void drawHouse();
+void houseTranslation(int direction);
 
 void initHouse(){
 
@@ -76,4 +73,33 @@ void eraseHouse(){
     scanline(roof, TRIANGLE, WHITE);
     scanline(door, SQUARE, WHITE);
     scanline(window, SQUARE, WHITE);
+}
+
+void houseTranslation(int direction){
+    int factorX, factorY;
+
+    if(direction == UP){
+        factorX = 0;
+        factorY = -10;
+    }
+
+    if(direction == DOWN){
+        factorX = 0;
+        factorY = 10;
+    }
+
+    if(direction == RIGHT){
+        factorX = 10;
+        factorY = 0;
+    }
+
+    if(direction == LEFT){
+        factorX = -10;
+        factorY = 0;
+    }
+
+    translation(SQUARE, factorX, factorY, house);
+    translation(TRIANGLE, factorX, factorY, roof);
+    translation(SQUARE, factorX, factorY, door);
+    translation(SQUARE, factorX, factorY, window);
 }
