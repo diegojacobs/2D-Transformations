@@ -60,12 +60,16 @@ void main ()
                 //House Rotation
                 case '1':
                     eraseHouse();
-                    houseRotation();
-                    drawHouse();
+                    houseRotation();    
                     drawTree();
+                    drawHouse();
                     break;
                 //House Scaling
                 case '2':
+                    eraseHouse();
+                    houseScale();                    
+                    drawTree();
+                    drawHouse();
                     break;
                 //House Shear Horizontal
                 case '3':
@@ -112,6 +116,10 @@ void main ()
                     break;
                 //Tree Scaling
                 case '8':
+                    eraseTree();
+                    treeScale();
+                    drawHouse();
+                    drawTree();
                     break;
                 //Tree Shear Horizontal
                 case '9':

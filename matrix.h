@@ -1,7 +1,8 @@
 
 coord multiply(double x, double y, double firstMatrix[3][3]);
-coord traslation(double x, double y, coord ref);
+coord translation(double x, double y, coord ref);
 coord rotation(coord rotateCoord, coord rotateRef, int angle);
+coord scale(coord ref, coord rotateRef, double scale_x, double scale_y);
 
 coord multiply(double x, double y, double firstMatrix[3][3])
 {
@@ -40,11 +41,13 @@ coord multiply(double x, double y, double firstMatrix[3][3])
   return p;
 }
 
-coord traslation(double x, double y, coord ref) {
+coord translation(double x, double y, coord ref) {
   double matrix[3][3];
+  
   matrix[0][0] = 1; matrix[0][1] = 0; matrix[0][2] = x;
   matrix[1][0] = 0; matrix[1][1] = 1; matrix[1][2] = y;
   matrix[2][0] = 0; matrix[2][1] = 0; matrix[2][2] = 1;
+
   return multiply(ref.x, ref.y, matrix);
 }
 
@@ -60,10 +63,28 @@ coord rotation(coord rotateCoord, coord rotateRef, int angle) {
   matrix[1][0] = sin(radians);
   matrix[1][1] = cos(radians);
   matrix[1][2] = -rotateRef.x*sin(radians) -rotateRef.y*cos(radians) + rotateRef.y;
-  
+
   matrix[2][0] = 0; 
   matrix[2][1] = 0; 
   matrix[2][2] = 1;
 
   return multiply(rotateCoord.x, rotateCoord.y, matrix);
+}
+
+coord scale(coord ref, coord rotateRef, double scale_x, double scale_y) {
+  double matrix[3][3];
+
+  matrix[0][0] = scale_x;
+  matrix[0][1] = 0; 
+  matrix[0][2] = -rotateRef.x*scale_x + rotateRef.x;
+
+  matrix[1][0] = 0; 
+  matrix[1][1] = scale_y; 
+  matrix[1][2] = -rotateRef.y*scale_y + rotateRef.y; 
+
+  matrix[2][0] = 0;
+  matrix[2][1] = 0; 
+  matrix[2][2] = 1;
+
+  return multiply(ref.x, ref.y, matrix);
 }

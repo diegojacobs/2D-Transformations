@@ -85,7 +85,7 @@ void treeTranslation(int direction){
         point.y = tree[i][1];
         point.z = 1;
 
-        point = traslation(factorX, factorY, point);
+        point = translation(factorX, factorY, point);
 
         tree[i][0] = point.x;
         tree[i][1] = point.y;
@@ -96,13 +96,13 @@ void treeTranslation(int direction){
         point.y = trunk[i][1];
         point.z = 1;
 
-        point = traslation(factorX, factorY, point);
+        point = translation(factorX, factorY, point);
 
         trunk[i][0] = point.x;
         trunk[i][1] = point.y;
     }
 
-    treeCenter = traslation(factorX, factorY, treeCenter);
+    treeCenter = translation(factorX, factorY, treeCenter);
 }
 
 void treeRotation(){
@@ -126,6 +126,33 @@ void treeRotation(){
         point.z = 1;
 
         point = rotation(point, treeCenter, 30);
+
+        trunk[i][0] = point.x;
+        trunk[i][1] = point.y;
+    }
+}
+
+void treeScale(){
+    int i;
+    coord point;
+
+    for(i = 0; i < TRIANGLE; i++){
+        point.x = tree[i][0];
+        point.y = tree[i][1];
+        point.z = 1;
+
+        point = scale(point, treeCenter, 1.1, 1.1);
+
+        tree[i][0] = point.x;
+        tree[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = trunk[i][0];
+        point.y = trunk[i][1];
+        point.z = 1;
+
+        point = scale(point, treeCenter, 1.1, 1.1);
 
         trunk[i][0] = point.x;
         trunk[i][1] = point.y;

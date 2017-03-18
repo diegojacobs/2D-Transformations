@@ -3,12 +3,14 @@ int roof[4][2];
 int window[5][2];
 int door[5][2];
 coord houseCenter;
+double factorX, factorY;
 
 void initHouse();
 void drawHouse();
 void eraseHouse();
 void houseTranslation(int direction);
 void houseRotation();
+void houseScale();
 
 void initHouse(){
 
@@ -94,7 +96,6 @@ void eraseHouse(){
 }
 
 void houseTranslation(int direction){
-    double factorX, factorY;
     int i;
     coord point;
 
@@ -123,7 +124,7 @@ void houseTranslation(int direction){
         point.y = roof[i][1];
         point.z = 1;
 
-        point = traslation(factorX, factorY, point);
+        point = translation(factorX, factorY, point);
 
         roof[i][0] = point.x;
         roof[i][1] = point.y;
@@ -134,7 +135,7 @@ void houseTranslation(int direction){
         point.y = house[i][1];
         point.z = 1;
 
-        point = traslation(factorX, factorY, point);
+        point = translation(factorX, factorY, point);
 
         house[i][0] = point.x;
         house[i][1] = point.y;
@@ -145,7 +146,7 @@ void houseTranslation(int direction){
         point.y = door[i][1];
         point.z = 1;
 
-        point = traslation(factorX, factorY, point);
+        point = translation(factorX, factorY, point);
 
         door[i][0] = point.x;
         door[i][1] = point.y;
@@ -156,13 +157,13 @@ void houseTranslation(int direction){
         point.y = window[i][1];
         point.z = 1;
 
-        point = traslation(factorX, factorY, point);
+        point = translation(factorX, factorY, point);
 
         window[i][0] = point.x;
         window[i][1] = point.y;
     }
 
-    houseCenter = traslation(factorX, factorY, houseCenter);
+    houseCenter = translation(factorX, factorY, houseCenter);
 }
 
 void houseRotation(){
@@ -208,6 +209,55 @@ void houseRotation(){
         point.z = 1;
 
         point = rotation(point, houseCenter, 30);
+
+        window[i][0] = point.x;
+        window[i][1] = point.y;
+    }
+}
+
+void houseScale(){
+    int i;
+    coord point;
+
+    for(i = 0; i < TRIANGLE; i++){
+        point.x = roof[i][0];
+        point.y = roof[i][1];
+        point.z = 1;
+
+        point = scale(point, houseCenter, 1.1, 1.1);
+
+        roof[i][0] = point.x;
+        roof[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = house[i][0];
+        point.y = house[i][1];
+        point.z = 1;
+
+        point = scale(point, houseCenter, 1.1, 1.1);
+
+        house[i][0] = point.x;
+        house[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = door[i][0];
+        point.y = door[i][1];
+        point.z = 1;
+
+        point = scale(point, houseCenter, 1.1, 1.1);
+
+        door[i][0] = point.x;
+        door[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = window[i][0];
+        point.y = window[i][1];
+        point.z = 1;
+
+        point = scale(point, houseCenter, 1.1, 1.1);
 
         window[i][0] = point.x;
         window[i][1] = point.y;

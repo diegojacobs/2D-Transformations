@@ -11,6 +11,12 @@
 //Colors
 #define WHITE 15
 
+//Operations
+#define TRANSLATION 1
+#define ROTATION 2
+#define SCALE 3
+#define SHEAR 4
+
 //Const
 #define PI 3.141592
 
