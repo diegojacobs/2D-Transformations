@@ -1,12 +1,14 @@
-int house[4][2];
-int roof[3][2];
-int window[4][2];
-int door[4][2];
+int house[5][2];
+int roof[4][2];
+int window[5][2];
+int door[5][2];
+coord houseCenter;
 
 void initHouse();
 void drawHouse();
 void eraseHouse();
 void houseTranslation(int direction);
+void houseRotation();
 
 void initHouse(){
 
@@ -23,6 +25,9 @@ void initHouse(){
     house[3][0] = 300;
     house[3][1] = 400;
 
+    house[4][0] = 100;
+    house[4][1] = 400;
+
     //Roof
     roof[0][0] = 100;
     roof[0][1] = 200;
@@ -32,6 +37,9 @@ void initHouse(){
 
     roof[2][0] = 300;
     roof[2][1] = 200;
+
+    roof[3][0] = 100;
+    roof[3][1] = 200;
 
     //Door
     door[0][0] = 135;
@@ -46,6 +54,9 @@ void initHouse(){
     door[3][0] = 195;
     door[3][1] = 400;
 
+    door[4][0] = 135;
+    door[4][1] = 400;
+
     //Window
     window[0][0] = 225;
     window[0][1] = 275;
@@ -58,6 +69,12 @@ void initHouse(){
 
     window[3][0] = 275;
     window[3][1] = 275;
+
+    window[4][0] = 225;
+    window[4][1] = 275;
+
+    houseCenter.x = 200;
+    houseCenter.y = 250;
 
     drawHouse();
 }
@@ -77,7 +94,9 @@ void eraseHouse(){
 }
 
 void houseTranslation(int direction){
-    int factorX, factorY;
+    double factorX, factorY;
+    int i;
+    coord point;
 
     if(direction == UP){
         factorX = 0;
@@ -99,8 +118,98 @@ void houseTranslation(int direction){
         factorY = 0;
     }
 
-    translation(SQUARE, factorX, factorY, house);
-    translation(TRIANGLE, factorX, factorY, roof);
-    translation(SQUARE, factorX, factorY, door);
-    translation(SQUARE, factorX, factorY, window);
+    for(i = 0; i < TRIANGLE; i++){
+        point.x = roof[i][0];
+        point.y = roof[i][1];
+        point.z = 1;
+
+        point = traslation(factorX, factorY, point);
+
+        roof[i][0] = point.x;
+        roof[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = house[i][0];
+        point.y = house[i][1];
+        point.z = 1;
+
+        point = traslation(factorX, factorY, point);
+
+        house[i][0] = point.x;
+        house[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = door[i][0];
+        point.y = door[i][1];
+        point.z = 1;
+
+        point = traslation(factorX, factorY, point);
+
+        door[i][0] = point.x;
+        door[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = window[i][0];
+        point.y = window[i][1];
+        point.z = 1;
+
+        point = traslation(factorX, factorY, point);
+
+        window[i][0] = point.x;
+        window[i][1] = point.y;
+    }
+
+    houseCenter = traslation(factorX, factorY, houseCenter);
+}
+
+void houseRotation(){
+    int i;
+    coord point;
+
+    for(i = 0; i < TRIANGLE; i++){
+        point.x = roof[i][0];
+        point.y = roof[i][1];
+        point.z = 1;
+
+        point = rotation(point, houseCenter, 30);
+
+        roof[i][0] = point.x;
+        roof[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = house[i][0];
+        point.y = house[i][1];
+        point.z = 1;
+
+        point = rotation(point, houseCenter, 30);
+
+        house[i][0] = point.x;
+        house[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = door[i][0];
+        point.y = door[i][1];
+        point.z = 1;
+
+        point = rotation(point, houseCenter, 30);
+
+        door[i][0] = point.x;
+        door[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = window[i][0];
+        point.y = window[i][1];
+        point.z = 1;
+
+        point = rotation(point, houseCenter, 30);
+
+        window[i][0] = point.x;
+        window[i][1] = point.y;
+    }
 }

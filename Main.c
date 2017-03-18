@@ -32,29 +32,37 @@ void main ()
                 case 'a':
                     eraseHouse();
                     houseTranslation(LEFT);
+                    drawTree();
                     drawHouse();
                     break;
                 //House Up
                 case 'w':
                     eraseHouse();
                     houseTranslation(UP);
+                    drawTree();
                     drawHouse();
                     break;            
                 //House Down
                 case 's':
                     eraseHouse();
                     houseTranslation(DOWN);
+                    drawTree();
                     drawHouse();
                     break;
                 //House Right
                 case 'd':
                     eraseHouse();
                     houseTranslation(RIGHT);
+                    drawTree();
                     drawHouse();
                     break;
 
                 //House Rotation
                 case '1':
+                    eraseHouse();
+                    houseRotation();
+                    drawHouse();
+                    drawTree();
                     break;
                 //House Scaling
                 case '2':
@@ -70,26 +78,47 @@ void main ()
                 case 'k':
                     eraseTree();
                     treeTranslation(LEFT);
+                    drawHouse();
                     drawTree();
                     break;
                 //Tree Up
                 case 'o':
                     eraseTree();
                     treeTranslation(UP);
+                    drawHouse();
                     drawTree();
                     break;
                 //Tree Down
                 case 'l':
                     eraseTree();
                     treeTranslation(DOWN);
+                    drawHouse();
                     drawTree();
                     break;
                 //Tree Right
                 case ';':
                     eraseTree();
                     treeTranslation(RIGHT);
+                    drawHouse();
                     drawTree();
                     break;  
+
+                //Tree Rotation
+                case '7':
+                    eraseTree();
+                    treeRotation();
+                    drawHouse();
+                    drawTree();
+                    break;
+                //Tree Scaling
+                case '8':
+                    break;
+                //Tree Shear Horizontal
+                case '9':
+                    break;
+                //Tree Shear Vertical
+                case '0':
+                    break;
             };
         }
     }

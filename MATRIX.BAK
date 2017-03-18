@@ -1,7 +1,7 @@
 
 coord multiply(double x, double y, double firstMatrix[3][3]);
 coord traslation(double x, double y, coord ref);
-coord rotation(coord rotateCoord, coord rotateRef, int angle);
+
 
 coord multiply(double x, double y, double firstMatrix[3][3])
 {
@@ -51,19 +51,15 @@ coord traslation(double x, double y, coord ref) {
 coord rotation(coord rotateCoord, coord rotateRef, int angle) {
   double matrix[3][3];
   double val;
-  double radians = angle*PI	 / 180.0;
+  double radians = angle*PI / 180.0;
   
   matrix[0][0] =  cos(radians);
   matrix[0][1] = -sin(radians);
   matrix[0][2] = -rotateRef.x*cos(radians) + rotateRef.y*sin(radians) + rotateRef.x;
-
   matrix[1][0] = sin(radians);
   matrix[1][1] = cos(radians);
   matrix[1][2] = -rotateRef.x*sin(radians) -rotateRef.y*cos(radians) + rotateRef.y;
-  
-  matrix[2][0] = 0; 
-  matrix[2][1] = 0; 
-  matrix[2][2] = 1;
+  matrix[2][0] = 0; matrix[2][1] = 0; matrix[2][2] = 1;
 
   return multiply(rotateCoord.x, rotateCoord.y, matrix);
 }

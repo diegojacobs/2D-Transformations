@@ -1,10 +1,13 @@
-int tree[3][2];
-int trunk[4][2];
+int tree[4][2];
+int trunk[5][2];
+coord treeCenter;
+coord trunkCenter;
 
 void initTree();
 void drawTree();
 void eraseTree();
 void treeTranslation(int direction);
+void treeRotation();
 
 void initTree(){
     //Tree
@@ -16,6 +19,9 @@ void initTree(){
 
     tree[2][0] = 700;
     tree[2][1] = 350;
+
+    tree[3][0] = 500;
+    tree[3][1] = 350;
 
     //Trunk
     trunk[0][0] = 575;
@@ -30,12 +36,18 @@ void initTree(){
     trunk[3][0] = 625;
     trunk[3][1] = 400;
 
+    trunk[4][0] = 575;
+    trunk[4][1] = 400;
+
+    treeCenter.x = 600;
+    treeCenter.y = 275;
+
     drawTree();
 }
 
 void drawTree(){
-    scanline(tree, 3, 2);
-    scanline(trunk, 4, 67);
+    scanline(tree,TRIANGLE, 2);
+    scanline(trunk, SQUARE, 67);
 }
 
 void eraseTree(){
@@ -44,8 +56,10 @@ void eraseTree(){
 }
 
 void treeTranslation(int direction){
-    int factorX, factorY;
-
+    double factorX, factorY;
+    int i;
+    coord point;
+    
     if(direction == UP){
         factorX = 0;
         factorY = -10;
@@ -66,6 +80,54 @@ void treeTranslation(int direction){
         factorY = 0;
     }
 
-    translation(TRIANGLE, factorX, factorY, tree);
-    translation(SQUARE, factorX, factorY, trunk);
+    for(i = 0; i < TRIANGLE; i++){
+        point.x = tree[i][0];
+        point.y = tree[i][1];
+        point.z = 1;
+
+        point = traslation(factorX, factorY, point);
+
+        tree[i][0] = point.x;
+        tree[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = trunk[i][0];
+        point.y = trunk[i][1];
+        point.z = 1;
+
+        point = traslation(factorX, factorY, point);
+
+        trunk[i][0] = point.x;
+        trunk[i][1] = point.y;
+    }
+
+    treeCenter = traslation(factorX, factorY, treeCenter);
+}
+
+void treeRotation(){
+    int i;
+    coord point;
+
+    for(i = 0; i < TRIANGLE; i++){
+        point.x = tree[i][0];
+        point.y = tree[i][1];
+        point.z = 1;
+
+        point = rotation(point, treeCenter, 30);
+
+        tree[i][0] = point.x;
+        tree[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = trunk[i][0];
+        point.y = trunk[i][1];
+        point.z = 1;
+
+        point = rotation(point, treeCenter, 30);
+
+        trunk[i][0] = point.x;
+        trunk[i][1] = point.y;
+    }
 }
