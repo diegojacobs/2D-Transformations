@@ -11,6 +11,7 @@ void eraseHouse();
 void houseTranslation(int direction);
 void houseRotation();
 void houseScale();
+void houseShear();
 
 void initHouse(){
 
@@ -258,6 +259,75 @@ void houseScale(){
         point.z = 1;
 
         point = scale(point, houseCenter, 1.1, 1.1);
+
+        window[i][0] = point.x;
+        window[i][1] = point.y;
+    }
+}
+
+void houseShear(int direction){
+    int i;
+    coord point;
+
+    if(direction == UP){
+        factorX = 0;
+        factorY = 0.1;
+    }
+
+    if(direction == DOWN){
+        factorX = 0;
+        factorY = -0.1;
+    }
+
+    if(direction == RIGHT){
+        factorX = 0.1;
+        factorY = 0;
+    }
+
+    if(direction == LEFT){
+        factorX = -0.1;
+        factorY = 0;
+    }
+
+    for(i = 0; i < TRIANGLE; i++){
+        point.x = roof[i][0];
+        point.y = roof[i][1];
+        point.z = 1;
+
+        point = shear(factorX, factorY, point, houseCenter);
+
+        roof[i][0] = point.x;
+        roof[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = house[i][0];
+        point.y = house[i][1];
+        point.z = 1;
+
+        point = shear(factorX, factorY, point, houseCenter);
+
+        house[i][0] = point.x;
+        house[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = door[i][0];
+        point.y = door[i][1];
+        point.z = 1;
+
+        point = shear(factorX, factorY, point, houseCenter);
+
+        door[i][0] = point.x;
+        door[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = window[i][0];
+        point.y = window[i][1];
+        point.z = 1;
+
+        point = shear(factorX, factorY, point, houseCenter);
 
         window[i][0] = point.x;
         window[i][1] = point.y;

@@ -71,11 +71,33 @@ void main ()
                     drawTree();
                     drawHouse();
                     break;
-                //House Shear Horizontal
+                //House Shear UP
                 case '3':
+                    eraseHouse();
+                    houseShear(UP);
+                    drawTree();
+                    drawHouse();
                     break;
-                //House Shear Vertical
+                //House Shear DOWN
                 case '4':
+                    eraseHouse();
+                    houseShear(DOWN);
+                    drawTree();
+                    drawHouse();
+                    break;
+                //House Shear LEFT
+                case '5':
+                    eraseHouse();
+                    houseShear(LEFT);
+                    drawTree();
+                    drawHouse();
+                    break;
+                //House Shear RIGHT
+                case '6':
+                    eraseHouse();
+                    houseShear(RIGHT);
+                    drawTree();
+                    drawHouse();
                     break;
 
                 //Tree Left
@@ -121,11 +143,33 @@ void main ()
                     drawHouse();
                     drawTree();
                     break;
-                //Tree Shear Horizontal
+                //Tree Shear UP
                 case '9':
+                    eraseTree();
+                    treeShear(UP);
+                    drawHouse();
+                    drawTree();
                     break;
-                //Tree Shear Vertical
+                //Tree Shear DOWN
                 case '0':
+                    eraseTree();
+                    treeShear(DOWN);
+                    drawHouse();
+                    drawTree();
+                    break;
+                //Tree Shear LEFT
+                case '-':
+                    eraseTree();
+                    treeShear(LEFT);
+                    drawHouse();
+                    drawTree();
+                    break;
+                //Tree Shear RIGHT
+                case '=':
+                    eraseTree();
+                    treeShear(RIGHT);
+                    drawHouse();
+                    drawTree();
                     break;
             };
         }

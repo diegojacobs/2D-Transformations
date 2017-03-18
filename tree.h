@@ -8,6 +8,8 @@ void drawTree();
 void eraseTree();
 void treeTranslation(int direction);
 void treeRotation();
+void treeScale();
+void treeShear(int direction);
 
 void initTree(){
     //Tree
@@ -153,6 +155,53 @@ void treeScale(){
         point.z = 1;
 
         point = scale(point, treeCenter, 1.1, 1.1);
+
+        trunk[i][0] = point.x;
+        trunk[i][1] = point.y;
+    }
+}
+
+void treeShear(int direction){
+    int i;
+    coord point;
+
+    if(direction == UP){
+        factorX = 0;
+        factorY = 0.1;
+    }
+
+    if(direction == DOWN){
+        factorX = 0;
+        factorY = -0.1;
+    }
+
+    if(direction == RIGHT){
+        factorX = 0.1;
+        factorY = 0;
+    }
+
+    if(direction == LEFT){
+        factorX = -0.1;
+        factorY = 0;
+    }
+
+    for(i = 0; i < TRIANGLE; i++){
+        point.x = tree[i][0];
+        point.y = tree[i][1];
+        point.z = 1;
+
+        point = shear(factorX, factorY, point, treeCenter);
+
+        tree[i][0] = point.x;
+        tree[i][1] = point.y;
+    }
+
+    for(i = 0; i < SQUARE; i++){
+        point.x = trunk[i][0];
+        point.y = trunk[i][1];
+        point.z = 1;
+
+        point = shear(factorX, factorY, point, treeCenter);
 
         trunk[i][0] = point.x;
         trunk[i][1] = point.y;
