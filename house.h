@@ -229,10 +229,10 @@ void houseScale(int type, int axis){
         factorX = 0.9;
 
     if(type == BIG && axis == SCALEY)
-        factorX = 1.1;
+        factorY = 1.1;
 
     if(type == SMALL && axis == SCALEY)
-        factorX = 0.9;
+        factorY = 0.9;
 
     for(i = 0; i < TRIANGLE; i++){
         point.x = roof[i][0];

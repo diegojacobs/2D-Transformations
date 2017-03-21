@@ -46,8 +46,28 @@ void initTree(){
 
     drawTree();
 }
+void showPalette(){
+    int i, j, k, l, color;
+    int startX = 0;
+    int startY = 0;
+    int size = 16;
+    int columns = 12;
+    color = 0;
+
+    for(i = startX; color < 256; i = i + size, color++){
+        if(color % columns == 0)
+            i = startX;
+        
+        j = startY + ((color - 0) / columns) * size;
+
+        for(k = 0;k < size; j++, k++)
+            for (l = 0; l < size; l++)
+                putPixel(i + l, j, color); 
+    }
+}
 
 void drawTree(){
+    showPalette();
     scanline(tree,TRIANGLE, GREEN);
     scanline(trunk, SQUARE, BROWN);
 }
@@ -147,10 +167,10 @@ void treeScale(int type, int axis){
         factorX = 0.9;
 
     if(type == BIG && axis == SCALEY)
-        factorX = 1.1;
+        factorY = 1.1;
 
     if(type == SMALL && axis == SCALEY)
-        factorX = 0.9;
+        factorY = 0.9;
 
     for(i = 0; i < TRIANGLE; i++){
         point.x = tree[i][0];
