@@ -22,7 +22,7 @@ void main ()
       return;
     }
 
-    drawFilledRectangle(0, 0, 800, 600, 15);
+    loadImage(0, 0, "2D/Images/back.bmp", &bmp);
     initHouse();
     initTree();
  
@@ -67,20 +67,35 @@ void main ()
                     drawTree();
                     drawHouse();
                     break;
-                //House Scale Big
+                //House Scale Big x
                 case '2':
                     eraseHouse();
-                    houseScale(BIG);                    
+                    houseScale(BIG, SCALEX);                    
                     drawTree();
                     drawHouse();
                     break;
-                //House Scale Small
+                //House Scale Small x
                 case '3':
                     eraseHouse();
-                    houseScale(SMALL);                    
+                    houseScale(SMALL, SCALEX);                    
                     drawTree();
                     drawHouse();
                     break;
+                //House Scale Big y
+                case '4':
+                    eraseHouse();
+                    houseScale(BIG, SCALEY);                    
+                    drawTree();
+                    drawHouse();
+                    break;
+                //House Scale Small y
+                case '5':
+                    eraseHouse();
+                    houseScale(SMALL, SCALEY);                    
+                    drawTree();
+                    drawHouse();
+                    break;
+
                 //House Shear UP
                 case 'z':
                     eraseHouse();
@@ -146,20 +161,35 @@ void main ()
                     drawHouse();
                     drawTree();
                     break;
-                //Tree Scale Big
+                //Tree Scale Big x
                 case '9':
                     eraseTree();
-                    treeScale(BIG);
+                    treeScale(BIG, SCALEX);
                     drawHouse();
                     drawTree();
                     break;
-                //Tree Scale Small
+                //Tree Scale Small x
                 case '0':
                     eraseTree();
-                    treeScale(SMALL);
+                    treeScale(SMALL, SCALEX);
                     drawHouse();
                     drawTree();
                     break;
+                //Tree Scale Big y
+                case '-':
+                    eraseTree();
+                    treeScale(BIG, SCALEY);
+                    drawHouse();
+                    drawTree();
+                    break;
+                //Tree Scale Small y
+                case '=':
+                    eraseTree();
+                    treeScale(SMALL, SCALEY);
+                    drawHouse();
+                    drawTree();
+                    break;
+
                 //Tree Shear UP
                 case 'm':
                     eraseTree();

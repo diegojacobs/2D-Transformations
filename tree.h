@@ -48,8 +48,8 @@ void initTree(){
 }
 
 void drawTree(){
-    scanline(tree,TRIANGLE, 2);
-    scanline(trunk, SQUARE, 67);
+    scanline(tree,TRIANGLE, GREEN);
+    scanline(trunk, SQUARE, BROWN);
 }
 
 void eraseTree(){
@@ -134,22 +134,30 @@ void treeRotation(){
     }
 }
 
-void treeScale(int type){
+void treeScale(int type, int axis){
     int i;
     coord point;
-    double factor;
+    double factorX = 1.0;
+    double factorY = 1.0;
     
-    if(type == BIG)
-        factor = 1.1;
-    else
-        factor = 0.9;
+    if(type == BIG && axis == SCALEX)
+        factorX = 1.1;
+    
+    if(type == SMALL && axis == SCALEX)
+        factorX = 0.9;
+
+    if(type == BIG && axis == SCALEY)
+        factorX = 1.1;
+
+    if(type == SMALL && axis == SCALEY)
+        factorX = 0.9;
 
     for(i = 0; i < TRIANGLE; i++){
         point.x = tree[i][0];
         point.y = tree[i][1];
         point.z = 1;
 
-        point = scale(point, treeCenter, factor, factor);
+        point = scale(point, treeCenter, factorX, factorY);
 
         tree[i][0] = point.x;
         tree[i][1] = point.y;
@@ -160,7 +168,7 @@ void treeScale(int type){
         point.y = trunk[i][1];
         point.z = 1;
 
-        point = scale(point, treeCenter, factor, factor);
+        point = scale(point, treeCenter, factorX, factorY);
 
         trunk[i][0] = point.x;
         trunk[i][1] = point.y;

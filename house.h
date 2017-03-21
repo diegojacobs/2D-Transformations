@@ -83,10 +83,10 @@ void initHouse(){
 }
 
 void drawHouse(){
-    scanline(house, SQUARE, 32);
-    scanline(roof, TRIANGLE, 4);
-    scanline(door, SQUARE, 4);
-    scanline(window, SQUARE, 3);
+    scanline(house, SQUARE, BLUE);
+    scanline(roof, TRIANGLE, 55);
+    scanline(door, SQUARE, 75);
+    scanline(window, SQUARE, SKYBLUE);
 }
 
 void eraseHouse(){
@@ -216,22 +216,30 @@ void houseRotation(){
     }
 }
 
-void houseScale(int type){
+void houseScale(int type, int axis){
     int i;
     coord point;
-    double factor;
+    double factorX = 1.0;
+    double factorY = 1.0;
     
-    if(type == BIG)
-        factor = 1.1;
-    else
-        factor = 0.9;
+    if(type == BIG && axis == SCALEX)
+        factorX = 1.1;
+    
+    if(type == SMALL && axis == SCALEX)
+        factorX = 0.9;
+
+    if(type == BIG && axis == SCALEY)
+        factorX = 1.1;
+
+    if(type == SMALL && axis == SCALEY)
+        factorX = 0.9;
 
     for(i = 0; i < TRIANGLE; i++){
         point.x = roof[i][0];
         point.y = roof[i][1];
         point.z = 1;
 
-        point = scale(point, houseCenter, factor, factor);
+        point = scale(point, houseCenter, factorX, factorY);
 
         roof[i][0] = point.x;
         roof[i][1] = point.y;
@@ -242,7 +250,7 @@ void houseScale(int type){
         point.y = house[i][1];
         point.z = 1;
 
-        point = scale(point, houseCenter, factor, factor);
+        point = scale(point, houseCenter, factorX, factorY);
 
         house[i][0] = point.x;
         house[i][1] = point.y;
@@ -253,7 +261,7 @@ void houseScale(int type){
         point.y = door[i][1];
         point.z = 1;
 
-        point = scale(point, houseCenter, factor, factor);
+        point = scale(point, houseCenter, factorX, factorY);
 
         door[i][0] = point.x;
         door[i][1] = point.y;
@@ -264,7 +272,7 @@ void houseScale(int type){
         point.y = window[i][1];
         point.z = 1;
 
-        point = scale(point, houseCenter, factor, factor);
+        point = scale(point, houseCenter, factorX, factorY);
 
         window[i][0] = point.x;
         window[i][1] = point.y;

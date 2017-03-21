@@ -11,9 +11,15 @@
 //Scale
 #define SMALL 1
 #define BIG 2
+#define SCALEX 1
+#define SCALEY 2
 
 //Colors
-#define WHITE 15
+#define WHITE 255
+#define BLUE 200
+#define BROWN 67
+#define SKYBLUE 235
+#define GREEN 2
 
 //Operations
 #define TRANSLATION 1
