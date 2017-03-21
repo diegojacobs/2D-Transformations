@@ -17,7 +17,8 @@
 //Colors
 #define WHITE 255
 #define BLUE 200
-#define BROWN 67
+#define BROWN 11
+#define BROWN2 12
 #define SKYBLUE 235
 #define GREEN 2
 

@@ -84,8 +84,8 @@ void initHouse(){
 
 void drawHouse(){
     scanline(house, SQUARE, BLUE);
-    scanline(roof, TRIANGLE, 55);
-    scanline(door, SQUARE, 75);
+    scanline(roof, TRIANGLE, BROWN);
+    scanline(door, SQUARE, BROWN2);
     scanline(window, SQUARE, SKYBLUE);
 }
 
