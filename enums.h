@@ -8,6 +8,10 @@
 #define DOWN 3
 #define LEFT 4
 
+//Scale
+#define SMALL 1
+#define BIG 2
+
 //Colors
 #define WHITE 15
 

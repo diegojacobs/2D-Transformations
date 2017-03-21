@@ -134,16 +134,22 @@ void treeRotation(){
     }
 }
 
-void treeScale(){
+void treeScale(int type){
     int i;
     coord point;
+    double factor;
+    
+    if(type == BIG)
+        factor = 1.1;
+    else
+        factor = 0.9;
 
     for(i = 0; i < TRIANGLE; i++){
         point.x = tree[i][0];
         point.y = tree[i][1];
         point.z = 1;
 
-        point = scale(point, treeCenter, 1.1, 1.1);
+        point = scale(point, treeCenter, factor, factor);
 
         tree[i][0] = point.x;
         tree[i][1] = point.y;
@@ -154,7 +160,7 @@ void treeScale(){
         point.y = trunk[i][1];
         point.z = 1;
 
-        point = scale(point, treeCenter, 1.1, 1.1);
+        point = scale(point, treeCenter, factor, factor);
 
         trunk[i][0] = point.x;
         trunk[i][1] = point.y;

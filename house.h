@@ -216,16 +216,22 @@ void houseRotation(){
     }
 }
 
-void houseScale(){
+void houseScale(int type){
     int i;
     coord point;
+    double factor;
+    
+    if(type == BIG)
+        factor = 1.1;
+    else
+        factor = 0.9;
 
     for(i = 0; i < TRIANGLE; i++){
         point.x = roof[i][0];
         point.y = roof[i][1];
         point.z = 1;
 
-        point = scale(point, houseCenter, 1.1, 1.1);
+        point = scale(point, houseCenter, factor, factor);
 
         roof[i][0] = point.x;
         roof[i][1] = point.y;
@@ -236,7 +242,7 @@ void houseScale(){
         point.y = house[i][1];
         point.z = 1;
 
-        point = scale(point, houseCenter, 1.1, 1.1);
+        point = scale(point, houseCenter, factor, factor);
 
         house[i][0] = point.x;
         house[i][1] = point.y;
@@ -247,7 +253,7 @@ void houseScale(){
         point.y = door[i][1];
         point.z = 1;
 
-        point = scale(point, houseCenter, 1.1, 1.1);
+        point = scale(point, houseCenter, factor, factor);
 
         door[i][0] = point.x;
         door[i][1] = point.y;
@@ -258,7 +264,7 @@ void houseScale(){
         point.y = window[i][1];
         point.z = 1;
 
-        point = scale(point, houseCenter, 1.1, 1.1);
+        point = scale(point, houseCenter, factor, factor);
 
         window[i][0] = point.x;
         window[i][1] = point.y;

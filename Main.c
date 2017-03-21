@@ -64,36 +64,43 @@ void main ()
                     drawTree();
                     drawHouse();
                     break;
-                //House Scaling
+                //House Scale Big
                 case '2':
                     eraseHouse();
-                    houseScale();                    
+                    houseScale(BIG);                    
+                    drawTree();
+                    drawHouse();
+                    break;
+                //House Scale Small
+                case '3':
+                    eraseHouse();
+                    houseScale(SMALL);                    
                     drawTree();
                     drawHouse();
                     break;
                 //House Shear UP
-                case '3':
+                case 'z':
                     eraseHouse();
                     houseShear(UP);
                     drawTree();
                     drawHouse();
                     break;
                 //House Shear DOWN
-                case '4':
+                case 'x':
                     eraseHouse();
                     houseShear(DOWN);
                     drawTree();
                     drawHouse();
                     break;
                 //House Shear LEFT
-                case '5':
+                case 'c':
                     eraseHouse();
                     houseShear(LEFT);
                     drawTree();
                     drawHouse();
                     break;
                 //House Shear RIGHT
-                case '6':
+                case 'v':
                     eraseHouse();
                     houseShear(RIGHT);
                     drawTree();
@@ -130,42 +137,49 @@ void main ()
                     break;  
 
                 //Tree Rotation
-                case '7':
+                case '8':
                     eraseTree();
                     treeRotation();
                     drawHouse();
                     drawTree();
                     break;
-                //Tree Scaling
-                case '8':
+                //Tree Scale Big
+                case '9':
                     eraseTree();
-                    treeScale();
+                    treeScale(BIG);
+                    drawHouse();
+                    drawTree();
+                    break;
+                //Tree Scale Small
+                case '0':
+                    eraseTree();
+                    treeScale(SMALL);
                     drawHouse();
                     drawTree();
                     break;
                 //Tree Shear UP
-                case '9':
+                case 'm':
                     eraseTree();
                     treeShear(UP);
                     drawHouse();
                     drawTree();
                     break;
                 //Tree Shear DOWN
-                case '0':
+                case ',':
                     eraseTree();
                     treeShear(DOWN);
                     drawHouse();
                     drawTree();
                     break;
                 //Tree Shear LEFT
-                case '-':
+                case '.':
                     eraseTree();
                     treeShear(LEFT);
                     drawHouse();
                     drawTree();
                     break;
                 //Tree Shear RIGHT
-                case '=':
+                case '/':
                     eraseTree();
                     treeShear(RIGHT);
                     drawHouse();
