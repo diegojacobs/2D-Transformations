@@ -9,10 +9,13 @@
 #include "graph.h"
 #include "house.h"
 #include "tree.h"
+#include "image.h"
+#include "ccp.h"
 
 void main ()
 {
     char c;
+    BITMAP bmp;
 
     if(!setVideoMode(v800x600x256, 800, 600)){
       printf("\r\nError couldn't initialize SVGA.\r\n");
@@ -185,7 +188,20 @@ void main ()
                     drawHouse();
                     drawTree();
                     break;
-            };
+
+                //Help
+                case 'h':
+                    copyFile(0, 0, 800, 600);
+                    loadImage(0, 0, "2D/Images/help.bmp", &bmp);
+                    c = ' ';
+                    while(c != 'h'){
+                        if (kbhit()) {
+                            c = getch();
+                        }
+                    }
+                    pasteFile(0, 0);
+                    break;
+            }
         }
     }
 

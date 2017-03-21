@@ -6,7 +6,6 @@ int setVideoMode(int mode, long width, long height);
 void unsetVideoMode();
 void setBank(char bank);
 void putPixel(int x, int y, char color);
-void putThicknessPixel(int x, int y, char color);
 char getPixel(int x, int y);
 
 char currentBank;
